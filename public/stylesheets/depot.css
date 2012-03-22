@@ -202,6 +202,15 @@
   font-weight: bold;
   margin-right: 2em;
 }
+
 #store .entry form, #store .entry form div {
   display: inline;
+}
+
+.counter {
+  float: right;
+  margin: 10px 5px 10px 0px;
+  width: 20em;
+  text-align: right;
+  font: 16px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
 }
