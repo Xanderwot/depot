@@ -151,6 +151,11 @@
   font-size: small;
 }
 
+.date_time {
+  color: #fff;
+  text-align: center;
+}
+
 /* An entry in the store catalog */
 
 #store  .entry {
