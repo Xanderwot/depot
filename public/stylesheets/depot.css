@@ -214,3 +214,19 @@
   text-align: right;
   font: 16px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
 }
+
+#store .cart_title {
+  width: 13em;
+  font: 140% bold;
+  border-bottom: 1px solid;
+}
+
+#store .item_price, #store .total_line {
+  text-align: right;
+  padding: 10px 0px 10px 10px;
+}
+
+#store .total_line .total_cell {
+  font-weight: bold;
+  border-top: 1px solid #595;
+}

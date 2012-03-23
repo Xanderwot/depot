@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
-  # GET /carts
-  # GET /carts.xml
+  
   def index
     @carts = Cart.all
 
@@ -10,19 +9,20 @@ class CartsController < ApplicationController
     end
   end
 
-  # GET /carts/1
-  # GET /carts/1.xml
   def show
-    @cart = Cart.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @cart }
+    begin
+      @cart = Cart.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        logger.error "Attempt to access invalid cart #{params[:id]}"
+        redirect_to store_url, :notice => 'Invalid cart'
+      else
+        respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @cart }
+      end
     end
   end
 
-  # GET /carts/new
-  # GET /carts/new.xml
   def new
     @cart = Cart.new
 
@@ -32,13 +32,10 @@ class CartsController < ApplicationController
     end
   end
 
-  # GET /carts/1/edit
   def edit
     @cart = Cart.find(params[:id])
   end
 
-  # POST /carts
-  # POST /carts.xml
   def create
     @cart = Cart.new(params[:cart])
 
@@ -53,8 +50,6 @@ class CartsController < ApplicationController
     end
   end
 
-  # PUT /carts/1
-  # PUT /carts/1.xml
   def update
     @cart = Cart.find(params[:id])
 
@@ -69,15 +64,15 @@ class CartsController < ApplicationController
     end
   end
 
-  # DELETE /carts/1
-  # DELETE /carts/1.xml
   def destroy
-    @cart = Cart.find(params[:id])
+    @cart = current_cart
     @cart.destroy
+    session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to(carts_url) }
+      format.html { redirect_to(store_url, :notice => "Cart is currently empty") }
       format.xml  { head :ok }
     end
   end
+     
 end
