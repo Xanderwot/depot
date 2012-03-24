@@ -35,7 +35,7 @@ class LineItemsController < ApplicationController
     session[:count] = 0
     @cart = current_cart
     product = Product.find(params[:product_id])
-    @line_item = @cart.add_product(product.id)
+    @line_item = @cart.add_product(product.id, product.price)
 
 
     respond_to do |format|
@@ -65,11 +65,26 @@ class LineItemsController < ApplicationController
 
   def destroy
     @line_item = LineItem.find(params[:id])
-    @line_item.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(line_items_url) }
-      format.xml  { head :ok }
+    cart_id = @line_item.cart_id
+    cart_count = Cart.find(cart_id).line_items.count
+    atr = @line_item.cart
+    cur_price = @line_item.price
+    if cart_count == 1 && @line_item.quantity == 1
+        Cart.find(cart_id).destroy
+        respond_to do |format|
+          format.html { redirect_to(store_path, :notice => 'Cart was removed') }
+          format.xml  { head :ok }
+        end  
+    else
+      if @line_item.quantity == 1 || params[:del_all] == 'true'
+        @line_item.destroy
+      else        
+        @line_item.decrement!(:quantity)
+      end
+      respond_to do |format|
+        format.html { redirect_to(atr, :notice => 'Item was removed') }
+        format.xml  { head :ok }    
+      end      
     end
   end
 end
