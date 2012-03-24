@@ -65,12 +65,9 @@ class LineItemsController < ApplicationController
 
   def destroy
     @line_item = LineItem.find(params[:id])
-    cart_id = @line_item.cart_id
-    cart_count = Cart.find(cart_id).line_items.count
-    atr = @line_item.cart
-    cur_price = @line_item.price
-    if cart_count == 1 && @line_item.quantity == 1
-        Cart.find(cart_id).destroy
+    cart = @line_item.cart
+    if cart.line_items.count == 1 && @line_item.quantity == 1
+        cart.destroy
         respond_to do |format|
           format.html { redirect_to(store_path, :notice => 'Cart was removed') }
           format.xml  { head :ok }
@@ -82,7 +79,7 @@ class LineItemsController < ApplicationController
         @line_item.decrement!(:quantity)
       end
       respond_to do |format|
-        format.html { redirect_to(atr, :notice => 'Item was removed') }
+        format.html { redirect_to(cart, :notice => 'Item was removed') }
         format.xml  { head :ok }    
       end      
     end
