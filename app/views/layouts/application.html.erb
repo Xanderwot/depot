@@ -14,12 +14,17 @@
 		</div>
 		<div id="columns" >
 				<div id="side" >
-				<span class="date_time"><%= Time.now.strftime("Today %d-%b-%Y %H:%m:%S") %></span><hr />
-				<a href="http://www...." >Home</a><br />
-				<a href="http://www..../faq" >Questions</a><br />
-				<a href="http://www..../news" >News</a><br />
-				<a href="http://www..../contact" >Contact</a><br />
-			</div>
+					<% if @cart %>
+						<%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
+							<%= render @cart %>
+						<% end %>
+					<% end %>
+					<span class="date_time"><%= Time.now.strftime("Today %d-%b-%Y %H:%m:%S") %></span><hr />
+					<a href="http://www...." >Home</a><br />
+					<a href="http://www..../faq" >Questions</a><br />
+					<a href="http://www..../news" >News</a><br />
+					<a href="http://www..../contact" >Contact</a><br />
+				</div>
 			<div id="main" >
 				<%= yield %>
 			</div>

@@ -40,11 +40,10 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to(@line_item.cart, :notice => 'Line item was successfully created.') }
-        format.xml  { render :xml => @line_item, :status => :created, :location => @line_item }
+        format.html { redirect_to(store_url) }
+        format.js   { @current_item = @line_item }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @line_item.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -64,24 +63,21 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
+    @cart = current_cart
     @line_item = LineItem.find(params[:id])
     cart = @line_item.cart
     if cart.line_items.count == 1 && @line_item.quantity == 1
-        cart.destroy
-        respond_to do |format|
-          format.html { redirect_to(store_path, :notice => 'Cart was removed') }
-          format.xml  { head :ok }
-        end  
+        cart.destroy 
     else
-      if @line_item.quantity == 1 || params[:del_all] == 'true'
+      if @line_item.quantity == 1
         @line_item.destroy
       else        
         @line_item.decrement!(:quantity)
-      end
-      respond_to do |format|
-        format.html { redirect_to(cart, :notice => 'Item was removed') }
-        format.xml  { head :ok }    
       end      
+    end
+    respond_to do |format|
+        format.html { redirect_to(store_path) }
+        format.js { @current_item = @line_item }
     end
   end
 end

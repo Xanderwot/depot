@@ -1,0 +1,10 @@
+<% if line_item == @current_item %>
+	<tr id="current_item" >
+<% else %>
+	<tr>
+<% end %>
+	<td><%= line_item.quantity %>&times;</td>
+	<td><%= line_item.product.title %></td>
+	<td class="item_price" ><%= number_to_currency(line_item.price) %></td>
+	<td><%= link_to image_tag("remove.png"), line_item_path(line_item), :confirm => "Remove #{line_item.product.title}?", :method => :delete, :remote => true %></td>
+</tr>

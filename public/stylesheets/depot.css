@@ -152,6 +152,8 @@
 }
 
 .date_time {
+  font-size: 85%;
+  padding: 5px 0px 10px 20px;
   color: #fff;
   text-align: center;
 }
@@ -229,4 +231,20 @@
 #store .total_line .total_cell {
   font-weight: bold;
   border-top: 1px solid #595;
+}
+
+#cart, #cart table {
+  font-size: smaller;
+  color: #fff;
+}
+
+#cart table {
+  border-top:
+  1px dotted #595;
+  border-bottom: 1px dotted #595;
+  margin-bottom: 10px;
+}
+
+.empty_button {
+  font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
 }
