@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
 	has_many :line_items, :dependent => :destroy
 
-	PAYMENT_TYPES = [ "Check", "Credit card", "Purchase order" ]
+	PAYMENT_TYPES = Payment.all.map(&:name)
 
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
