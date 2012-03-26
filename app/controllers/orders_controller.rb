@@ -28,6 +28,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.xml
   def new
     @cart = current_cart
+    @temp_var = true
     if @cart.line_items.empty?
       redirect_to store_url, :notice => "Your cart is empty"
       return
