@@ -21,4 +21,9 @@ class Notifier < ActionMailer::Base
     @order = order
     mail :to => order.email, :subject => 'Pragmatic Store Order Shipped'
   end
+
+  def error_send(error_text)
+    @error_text = error_text
+    mail :to => "admin@host.com", :subject => 'Aplication error'
+  end  
 end
