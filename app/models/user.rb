@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   belongs_to :cart, :dependent => :destroy
-  has_many :odrers, :dependent => :destroy
+  has_many :orders, :dependent => :destroy
 
   ROLE_TYPES = [ "admin", "user" ]		
   	

@@ -7,6 +7,7 @@
 </div>
 <% end %>
 <h1>Your Pragmatic Catalog</h1>
+<p><%= will_paginate @products %></p>
 <% @products.each do |product| %>
 	<div class="entry" >
 		<%= link_to image_tag(product.image_url), line_items_path(:product_id => product), :method => :post, :remote => true %>

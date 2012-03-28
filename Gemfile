@@ -12,6 +12,9 @@ gem 'jquery-rails'
 gem 'devise'
 
 gem 'cancan'
+
+gem 'populator'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

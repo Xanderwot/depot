@@ -51,6 +51,7 @@ GEM
     mime-types (1.18)
     orm_adapter (0.0.7)
     polyglot (0.3.3)
+    populator (1.0.0)
     rack (1.2.5)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
@@ -90,6 +91,7 @@ DEPENDENCIES
   cancan
   devise
   jquery-rails
+  populator
   rails (= 3.0.11)
   sqlite3
   will_paginate (>= 3.0.pre)

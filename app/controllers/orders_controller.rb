@@ -3,10 +3,15 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @orders = Order.paginate :page => params[:page], 
-                             :order => 'created_at desc',
-                             :per_page => 10
-
+    if can? :manage, :user_id => current_user.id
+      @orders = Order.paginate :page => params[:page], 
+                               :order => 'created_at desc',
+                               :per_page => 15
+    else
+      @orders = current_user.orders.paginate :page => params[:page], 
+                                             :order => 'created_at desc',
+                                             :per_page => 15
+    end
 
     respond_to do |format|
       format.html # index.html.erb
