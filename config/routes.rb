@@ -1,20 +1,22 @@
 Depot::Application.routes.draw do
 
+  devise_for :users, :path_names => { :sign_in => "login", :sign_up => "register" }
+
   resources :orders
 
   resources :line_items
 
   resources :carts
 
+  resources :products
+
   resources :products do
     get :who_bought, :on => :member
   end
 
-  get "store/index"
+  match "/store" => "store#index"
 
-  resources :products
-
-  root :to => "store#index", :as => "store"
+  root :to => "store#index"
 
 
   # The priority is based upon order of creation:

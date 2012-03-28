@@ -8,6 +8,10 @@ gem 'rails', '3.0.11'
 gem 'sqlite3'
 
 gem 'jquery-rails'
+
+gem 'devise'
+
+gem 'cancan'
 # Use unicorn as the web server
 # gem 'unicorn'
 

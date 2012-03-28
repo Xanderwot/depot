@@ -40,7 +40,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to(store_url) }
+        format.html { redirect_to(root_url) }
         format.js   { @current_item = @line_item }
       else
         format.html { render :action => "new" }
@@ -76,7 +76,7 @@ class LineItemsController < ApplicationController
       end      
     end
     respond_to do |format|
-        format.html { redirect_to(store_path) }
+        format.html { redirect_to(root_path) }
         format.js { @current_item = @line_item }
     end
   end

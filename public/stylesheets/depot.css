@@ -281,3 +281,13 @@
 .depot_form div {
   margin: 0.5em 0;
 }
+
+#sign_panel {
+  float: right;
+  margin-right: 10px;
+}
+
+.user_email {
+  padding: 10px 0px 20px 30px;
+  font: 16px bold; 
+}

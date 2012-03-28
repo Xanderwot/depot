@@ -1,7 +1,10 @@
 class StoreController < ApplicationController
+ 
   def index
   	 @products = Product.all
-  	 @cart = current_cart
+     if user_signed_in?
+      @cart = current_cart
+     end   
   	 if session[:count].nil?
   	 	session[:count] = 1
   	 else

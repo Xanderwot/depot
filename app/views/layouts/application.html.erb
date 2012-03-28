@@ -8,19 +8,33 @@
 		<%= csrf_meta_tag %>
 	</head>
 	<body id="store" >
+		<div id='sign_panel'>
+			<% if user_signed_in? %>
+				You autorised as <%= link_to "#{current_user.email}", edit_user_registration_path %>  
+				<%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+			<% else %>
+				Please <%= link_to 'Sign in', user_session_path %>
+				 or <%= link_to 'Sign up', new_user_registration_path %>	
+			<% end %>	
+		</div>
 		<div id="banner" >
 			<%= image_tag("logo.png") %>
 			<%= @page_title || "Pragmatic Bookshelf" %>
 		</div>
 		<div id="columns" >
 				<div id="side" >
+					<span class="date_time">
+						<%= Time.now.strftime("Today %d-%b-%Y %H:%m:%S") %>
+					</span><br />
 					<% if @cart %>
 						<%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
 							<%= render @cart %>
 						<% end %>
 					<% end %>
-					<span class="date_time"><%= Time.now.strftime("Today %d-%b-%Y %H:%m:%S") %></span><hr />
-					<%= link_to 'Home', store_url  %><br />
+					<%= link_to 'Home', root_url  %><br />
+					<% if user_signed_in? %>
+						<%= link_to 'Orders', orders_path %><br />
+					<% end %>	
 					<a href="http://www..../faq" >Questions</a><br />
 					<a href="http://www..../news" >News</a><br />
 					<a href="http://www..../contact" >Contact</a><br />

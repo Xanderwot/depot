@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
-  # GET /orders
-  # GET /orders.xml
+
+  load_and_authorize_resource
+
   def index
-    @orders = Order.paginate :page=>params[:page], 
-                             :order=>'created_at desc',
+    @orders = Order.paginate :page => params[:page], 
+                             :order => 'created_at desc',
                              :per_page => 10
 
 
@@ -30,7 +31,7 @@ class OrdersController < ApplicationController
     @cart = current_cart
     @temp_var = true
     if @cart.line_items.empty?
-      redirect_to store_url, :notice => "Your cart is empty"
+      redirect_to root_url, :notice => "Your cart is empty"
       return
     end
 
@@ -55,10 +56,10 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
+        current_user.cart.destroy
+        current_user.update_attributes(:cart_id => nil)
         Notifier.order_received(@order).deliver
-        format.html { redirect_to(store_url, :notice => 'Thank you for your order.') }
+        format.html { redirect_to(root_url, :notice => 'Thank you for your order.') }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
       else
         format.html { render :action => "new" }

@@ -6,11 +6,18 @@ class ApplicationController < ActionController::Base
     private
 
   	def current_cart
-  		Cart.find(session[:cart_id])
-  	rescue ActiveRecord::RecordNotFound
-  		cart = Cart.create
-  		session[:cart_id] = cart.id
-  		cart
-  	end	
+      if current_user.cart_id.nil?
+        cart = Cart.create
+        current_user.update_attribute(:cart_id, cart.id)
+        cart
+      else
+        current_user.cart
+      end 
+
+    end 
+
+    rescue_from CanCan::AccessDenied do |exception|
+      redirect_to root_url, :alert => exception.message
+    end   
 
 end

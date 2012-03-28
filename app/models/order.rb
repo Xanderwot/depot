@@ -1,13 +1,11 @@
 class Order < ActiveRecord::Base
 	has_many :line_items, :dependent => :destroy
+	belongs_to :user
 
 	PAYMENT_TYPES = Payment.all.map(&:name)
 
-	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
 	validates :name, :address, :pay_type, :presence => true
-	validates :email, :presence => true,
-					  :format => { :with => email_regex}	
+	
 	validates :pay_type, :inclusion => PAYMENT_TYPES
 
 	def add_line_items_from_cart(cart)

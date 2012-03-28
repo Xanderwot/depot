@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  
+
   def index
     @carts = Cart.all
 
@@ -11,10 +11,10 @@ class CartsController < ApplicationController
 
   def show
     begin
-      @cart = Cart.find(params[:id])
+      @cart = current_user.cart
       rescue ActiveRecord::RecordNotFound
         logger.error "Attempt to access invalid cart #{params[:id]}"
-        redirect_to store_url, :notice => 'Invalid cart'
+        redirect_to root_url, :notice => 'Invalid cart'
         error_text = "Attempt to access invalid cart #{params[:id]}"
         Notifier.error_send(error_text).deliver
       else
@@ -53,7 +53,7 @@ class CartsController < ApplicationController
   end
 
   def update
-    @cart = Cart.find(params[:id])
+    @cart = current_user.cart
 
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
@@ -69,10 +69,10 @@ class CartsController < ApplicationController
   def destroy
     @cart = current_cart
     @cart.destroy
-    session[:cart_id] = nil
+    # session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to(store_url) }
+      format.html { redirect_to(root_url) }
       format.js
       format.xml  { head :ok }
     end
