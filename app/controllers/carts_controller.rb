@@ -11,7 +11,7 @@ class CartsController < ApplicationController
 
   def show
     begin
-      @cart = current_user.cart
+      @cart = current_cart
       rescue ActiveRecord::RecordNotFound
         logger.error "Attempt to access invalid cart #{params[:id]}"
         redirect_to root_url, :notice => 'Invalid cart'
@@ -53,7 +53,7 @@ class CartsController < ApplicationController
   end
 
   def update
-    @cart = current_user.cart
+    @cart = current_cart
 
     respond_to do |format|
       if @cart.update_attributes(params[:cart])

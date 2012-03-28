@@ -19,8 +19,6 @@
     <%= f.label :address %><br />
     <%= f.text_area :address, :rows => 3, :cols => 40 %>
   </div>
-    <%= f.text_field :email, :value => "#{current_user.email}", :type => :hidden %>
-    <%= f.text_field  :user_id, :type => :hidden, :value => "#{current_user.id}" %>
   <% if current_user.role == "admin" %>
   <div class='field'>
     <%= f.label :ship_date %><br />

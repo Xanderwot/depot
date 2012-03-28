@@ -1,6 +1,6 @@
 class Cart < ActiveRecord::Base
 	has_many :line_items, :dependent => :destroy
-	has_one :user
+	has_one :user, :dependent => :nullify
 
 	def add_product(product_id, product_price)
 		current_item = line_items.find_by_product_id(product_id)	

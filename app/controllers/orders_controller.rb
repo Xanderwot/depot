@@ -56,8 +56,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        current_user.cart.destroy
-        current_user.update_attributes(:cart_id => nil)
+        @order.update_attributes(:user_id => current_user.id, :email => current_user.email)
+        current_cart.destroy
         Notifier.order_received(@order).deliver
         format.html { redirect_to(root_url, :notice => 'Thank you for your order.') }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
