@@ -1,0 +1,74 @@
+ru:
+ layouts:
+    application:
+      title:       "Pragmatic Bookshelf"
+      home:        "Главная"
+      orders:	   "Ордера"
+
+ store:
+    index:
+      title_html:  "Каталог товаров"
+      add_html:    "В корзину"
+
+ number:
+    currency:
+      format:
+        unit:      "$"
+        precision: 2
+        separator: ","
+        delimiter: "."
+        format:    "%u%n"
+        
+ carts:
+    cart:
+      title:       "Ваша корзина"
+      empty:       "Очистить корзину"
+      checkout:    "Оформить заказ"
+      
+ orders:
+   new:
+     legend: "Введите данные заказа"
+   edit:
+     legend: "Редактирование заказа"
+
+ products:
+   new:
+     legend: "Добавение нового продукта"
+   edit:
+     legend: "Редактирование продукта"                 
+
+ formtastic:
+   labels:
+     order:
+       name:   "Имя"
+       adress:   "Адрес"
+       pay_type:  "Метод оплаты"
+     product:
+       title: "Название"
+       description: "Описание"
+       image_url: "Ссылка на изображение"
+       price: "Цена" 
+     user:
+       email: "Email"
+       password: "Пароль"
+       password_confirmation: "Повторите пароль"
+       current_password: "Текущий пароль"
+       remember_me: "Запомнить меня"   
+   actions:
+     submit:  "Отправить"
+     cancel:  "Отмена"
+   hints:
+     order:
+       name: "Введите ваше имя"
+       adress: "Введите ваш адрес"
+       pay_type: "Изменение типа платежа"
+     product:
+       title: "Название продукта"
+       description: "Описание продукта"
+       image_url: "Ссылка на изображение, вида 'image/image.jpg'"
+       price: "Цена продукта"
+     user:
+       email: "Введите ваш email"
+       password: "Введите ваш пароль"
+       password_confirmation: "Повторите пароль"
+       current_password: "Введите текущий пароль для принятия изменений" 

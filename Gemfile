@@ -15,6 +15,8 @@ gem 'cancan'
 
 gem 'populator'
 
+gem 'formtastic'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

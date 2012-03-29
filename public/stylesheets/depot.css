@@ -8,7 +8,9 @@
         background-color: #f0f0f0;
         font: bold smaller sans-serif;
 }
-
+li {
+ list-style: none;  
+}
 
 #store h1 {
         font:  150% sans-serif;
@@ -204,10 +206,10 @@
   font-weight: bold;
   margin-right: 2em;
 }
-
+/*
 #store .entry form, #store .entry form div {
   display: inline;
-}
+}*/
 
 .counter {
   float: right;
@@ -247,39 +249,6 @@
 
 .empty_button {
   font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-}
-
-/*Order form*/
-.depot_form fieldset {
-  background: #efe;
-}
-
-.depot_form legend {
-  color: #dfd;
-  background: #141;
-  font-family: sans-serif;
-  padding: 0.2em 1em;
-}
-
-.depot_form label {
-  width: 5em;
-  float: left;
-  text-align: right;
-  padding-top: 0.2em;
-  margin-right: 0.1em;
-  display: block;
-}
-
-.depot_form select, .depot_form textarea, .depot_form input {
-  margin-left: 0.5em;
-}
-
-.depot_form .submit {
-  margin-left: 4em;
-}
-
-.depot_form div {
-  margin: 0.5em 0;
 }
 
 #sign_panel {

@@ -1,5 +1,74 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+#
+ layouts:
+    application:
+      title:       "Pragmatic Bookshelf"
+      home:        "Home"
+      orders:    "Orders" 
+#
+ store:
+    index:
+      title_html:  "Your Pragmatic Catalog"
+      add_html:    "Add to Cart"
+
+ number:
+    currency:
+      format:
+        unit:      "$"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format:    "%u%n"
+        
+ carts:
+    cart:
+      title:       "Your Cart"
+      empty:       "Empty cart"
+      checkout:    "Checkout"
+ orders:
+   new:
+     legend: "Enter your details"
+   edit:
+     legend: "Edit order details"
+
+ products:
+   new:
+     legend: "Add new product"
+   edit:
+     legend: "Edit product"                 
+
+ formtastic:
+   labels:
+     order:
+       name:   "Name"
+       adress:   "Adress"
+       pay_type:  "Payment"
+     product:
+       title: "Title"
+       description: "Description"
+       image_url: "Image url"
+       price: "Price" 
+     user:
+       email: "Email"
+       password: "Password"
+       password_confirmation: "Confirm password"
+       current_password: "Current password"
+       remember_me: "Remember me"   
+   actions:
+     submit:  "Send"
+     cancel:  "Cancel"
+   hints:
+     order:
+       name: "Enter your name"
+       adress: "Enter your adress"
+       pay_type: "Chouse payment type"
+     product:
+       title: "Product title"
+       description: "Product Description"
+       image_url: "Image url, like 'image/image.jpg'"
+       price: "Product price"
+     user:
+       email: "Enter your email"
+       password: "Enter your password"
+       password_confirmation: "Repeat password"
+       current_password: "Enter current password to accept any changes"                   

@@ -4,6 +4,9 @@
 		<title>Pragprog Books Online Store</title>
 		<%= stylesheet_link_tag "scaffold" %>
 		<%= stylesheet_link_tag "depot", :media => "all" %>
+		<%= stylesheet_link_tag 'formtastic' %>
+  		<!--[if IE 6]><%= stylesheet_link_tag 'ie6' %><![endif]-->
+  		<!--[if IE 7]><%= stylesheet_link_tag 'ie7' %><![endif]-->
 		<%= javascript_include_tag :defaults %>
 		<%= csrf_meta_tag %>
 	</head>
@@ -19,7 +22,7 @@
 		</div>
 		<div id="banner" >
 			<%= image_tag("logo.png") %>
-			<%= @page_title || "Pragmatic Bookshelf" %>
+			<%= @page_title || t('.title') %>
 		</div>
 		<div id="columns" >
 				<div id="side" >
@@ -31,9 +34,9 @@
 							<%= render @cart %>
 						<% end %>
 					<% end %>
-					<%= link_to 'Home', root_url  %><br />
+					<%= link_to t('.home'), root_url  %><br />
 					<% if user_signed_in? %>
-						<%= link_to 'Orders', orders_path %><br />
+						<%= link_to t('.orders'), orders_path %><br />
 					<% end %>	
 				</div>
 			<div id="main" >

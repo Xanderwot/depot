@@ -2,22 +2,16 @@ Depot::Application.routes.draw do
 
   devise_for :users, :path_names => { :sign_in => "login", :sign_up => "register" }
 
-  resources :orders
-
-  resources :line_items
-
-  resources :carts
-
-  resources :products
-
-  resources :products do
-    get :who_bought, :on => :member
-  end
-
-  match "/store" => "store#index"
-
-  root :to => "store#index"
-
+  scope '(:locale)' do
+    resources :orders
+    resources :line_items
+    resources :carts
+    resources :products do
+      get :who_bought, :on => :member
+    end
+    match "/store" => "store#index"
+    root :to => "store#index"
+  end  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

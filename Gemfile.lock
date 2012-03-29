@@ -38,6 +38,8 @@ GEM
       warden (~> 1.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    formtastic (2.1.1)
+      actionpack (~> 3.0)
     i18n (0.5.0)
     jquery-rails (1.0.19)
       railties (~> 3.0)
@@ -90,6 +92,7 @@ PLATFORMS
 DEPENDENCIES
   cancan
   devise
+  formtastic
   jquery-rails
   populator
   rails (= 3.0.11)
