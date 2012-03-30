@@ -1,0 +1,10 @@
+<div class="message">
+  <div class="created_at"><%= message.created_at.strftime("%B %d, %Y") %></div>
+  <div class="user_name"><%= "#{message.user.email}" %></div>
+  <div class="content">
+    <%= message.content %>
+  </div>
+  <div class="actions">
+    <%= link_to "Reply", new_product_message_path(:parent_id => message), :remote => true %>
+  </div>
+</div>

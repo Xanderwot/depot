@@ -1,0 +1,7 @@
+<h1> title "Reply" </h1>
+
+<%= render @message.parent if @message.parent %>
+
+<%= render "form" %>
+
+<p><%= link_to "Back to Messages", product_messages_path, :remote => true %></p>

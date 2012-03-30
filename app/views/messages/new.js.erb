@@ -1,0 +1,3 @@
+$("#<%= @product.id %>").html("<%= escape_javascript(render @message.parent)%>");
+$("#<%= @product.id %>").append("<%= escape_javascript(render 'form') %>");
+$("#<%= @product.id %>").append("<%= escape_javascript(link_to 'Back to Messages', product_messages_path, :remote => true) %>");

@@ -5,7 +5,7 @@
 	<tr class="<%= cycle('list_line_odd', 'list_line_even') %>" >
 	<td>
 		<% if product.image_url.nil? %>
-			<%= link_to image_tag(product.images.first.image.thumb('50x50').url), image_url(product.images.first.image.url), :class => 'list_image' %>
+			<%= link_to image_tag(product.images.first.image.thumb('50x50').url), image_path(product.images.first.image.url), :class => 'list_image' %>
 		<% else %>
 			<%= image_tag(product.image_url, :class => 'list_image') %>
 		<% end %>

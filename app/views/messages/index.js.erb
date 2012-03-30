@@ -1,0 +1,4 @@
+$("#<%= @product.id %>").html("");
+$("#<%= @product.id %>").show();
+$("#<%= @product.id %>").html("<%= escape_javascript(nested_messages @messages.arrange(:order => :created_at)) %>");
+$("#<%= @product.id %>").append("<%= escape_javascript(render 'form') %>");

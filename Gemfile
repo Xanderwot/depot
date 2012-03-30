@@ -23,6 +23,8 @@ gem 'dragonfly', '~>0.9.11'
 
 gem "nested_form", :git => 'git://github.com/ryanb/nested_form.git', :branch => 'master'
 
+gem 'ancestry'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -201,6 +201,11 @@ li {
   position: relative;
 }
 
+#store .entry .comments {
+  float: right;
+  margin: 0px 40px 10px 0px;
+}
+
 #store .entry  .price {
   color: #44a;
   font-weight: bold;
@@ -259,4 +264,59 @@ li {
 .user_email {
   padding: 10px 0px 20px 30px;
   font: 16px bold; 
+}
+
+/* messages style */
+
+.message {
+  margin: 5px 0;
+  padding: 2px 5px;
+  border: solid 1px #999;
+  width: 20em;
+  border-radius: 12px;
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, #CCC),
+      color-stop(1, #F5F5F5)
+  );
+  background-image: -moz-linear-gradient(
+      center bottom,
+      #CCC 0%,
+      #F5F5F5 100%
+  );
+}
+
+#new_message {
+  background-image: none;
+  border: none;
+}
+
+.message .content a {
+  color: #000;
+  text-decoration: none;
+}
+
+.message .created_at {
+  color: #555;
+  font-size: 80%;
+  float: right;
+}
+
+.message .actions {
+  font-size: 80%;
+  margin-top: 5px;
+}
+
+.message .actions a {
+  text-decoration: none;
+}
+
+.nested_messages {
+  margin-left: 25px;
+}
+
+.nested_messages .nested_messages .nested_messages .nested_messages {
+  margin-left: 0;
 }

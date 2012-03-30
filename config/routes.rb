@@ -7,6 +7,7 @@ Depot::Application.routes.draw do
     resources :line_items
     resources :carts
     resources :products do
+      resources :messages
       get :who_bought, :on => :member
     end
     match "/store" => "store#index"
