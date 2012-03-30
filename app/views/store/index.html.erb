@@ -10,7 +10,11 @@
 <p><%= will_paginate @products %></p>
 <% @products.each do |product| %>
 	<div class="entry" >
+		<% if product.image_url.nil? %>
+			<%= link_to image_tag(product.images.first.image.thumb('50x50').url), product.images.first.image.url, :class => 'list_image' %>
+		<% else %>
 		<%= link_to image_tag(product.image_url), line_items_path(:product_id => product), :method => :post, :remote => true %>
+		<% end %>
 		<h3><%= product.title %></h3>
 		<%=sanitize product.description %>
 			<div class="price_line" >

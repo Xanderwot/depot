@@ -4,7 +4,11 @@
 	 <% @products.each do |product| %>
 	<tr class="<%= cycle('list_line_odd', 'list_line_even') %>" >
 	<td>
-		<%= image_tag(product.image_url, :class => 'list_image') %>
+		<% if product.image_url.nil? %>
+			<%= link_to image_tag(product.images.first.image.thumb('50x50').url), image_url(product.images.first.image.url), :class => 'list_image' %>
+		<% else %>
+			<%= image_tag(product.image_url, :class => 'list_image') %>
+		<% end %>
 	</td>
 	<td class="list_description" >
 		<dl>

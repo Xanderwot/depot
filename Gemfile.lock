@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/ryanb/nested_form.git
+  revision: 486e0f0e93f3ca455d5d0fc7869053257b6afce2
+  branch: master
+  specs:
+    nested_form (0.2.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -36,6 +43,8 @@ GEM
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.1)
+    dragonfly (0.9.11)
+      rack
     erubis (2.6.6)
       abstract (>= 1.0.0)
     formtastic (2.1.1)
@@ -55,6 +64,8 @@ GEM
     polyglot (0.3.3)
     populator (1.0.0)
     rack (1.2.5)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -92,9 +103,12 @@ PLATFORMS
 DEPENDENCIES
   cancan
   devise
+  dragonfly (~> 0.9.11)
   formtastic
   jquery-rails
+  nested_form!
   populator
+  rack-cache
   rails (= 3.0.11)
   sqlite3
   will_paginate (>= 3.0.pre)

@@ -1,7 +1,15 @@
-<%= semantic_form_for @product do |f| %>
-    <%= f.input :title, :input_html => { :size => 40 } %>
-    <%= f.input :description, :input_html => { :cols => 40, :rows => 4 } %>
-    <%= f.input :image_url, :input_html => { :size => 40 } %>
-    <%= f.input :price %>
-    <%= f.actions :submit, :cancel %>
-  <% end %>
+ <%=semantic_nested_form_for @product, :html => {:multipart => true} do |f| %>
+ 	<%= f.inputs "Basic" do %>	
+ 		<%= f.input :title, :input_html => { :size => 50 } %>
+ 		<%= f.input :description, :input_html => { :rows => 6, :cols => 50 } %>	
+ 		<%= f.input :price %>
+ 			<%= f.fields_for :images do |img_f| %>
+ 				<%= img_f.input :name, :input_html => { :size => 50 } %>
+ 				<%= img_f.input :image, :as => :file %>
+ 				<%= img_f.hidden_field :retained_image %>
+ 				<%= img_f.link_to_remove "Remove this task" %>
+ 			<% end %>	
+ 		<p><%= f.link_to_add "Add image", :images %></p>
+ 	<% end %>	
+ 	<%= f.actions :submit, :cancel %>
+ <% end %> 	

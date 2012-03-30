@@ -4,7 +4,9 @@ class Product < ActiveRecord::Base
 
 	has_many :line_items
 	has_many :orders, :through => :line_items
+	has_many :images, :dependent => :destroy
 
+	accepts_nested_attributes_for :images
 	before_destroy :ensure_not_referenced_by_any_line_item
 
 	validates :title, :presence => true,
@@ -14,11 +16,13 @@ class Product < ActiveRecord::Base
 
 	validates :description, :presence => true
 
-	validates :image_url, :presence => true,
-	 					  :format => { :with => (%r{\.(gif|jpg|png)$}i),
-									   :message => 'must be a .gif, .jpg or .png image'}	
+	#validates :image_url, :presence => true,
+	# 					  :format => { :with => (%r{\.(gif|jpg|png)$}i),
+	#								   :message => 'must be a .gif, .jpg or .png image'}	
 
 	validates :price, :numericality => {:greater_than_or_equal_to => 0.01}
+
+
 
 	private
 	

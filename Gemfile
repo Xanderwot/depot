@@ -17,6 +17,12 @@ gem 'populator'
 
 gem 'formtastic'
 
+gem 'rack-cache', :require => 'rack/cache'
+
+gem 'dragonfly', '~>0.9.11'
+
+gem "nested_form", :git => 'git://github.com/ryanb/nested_form.git', :branch => 'master'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
