@@ -26,8 +26,7 @@ class MessagesController < ApplicationController
   	@message = Message.new(params[:message])
   	respond_to do |format|
     	if @message.save
-    		@message.update_attribute(:user_id, current_user.id)
-    		@message.update_attribute(:product_id, @product.id)
+    		@message.update_attributes(:user_id => current_user.id, :product_id => @product.id)
     		@messages = @product.messages.scoped
       		format.js
     	else
@@ -46,6 +45,6 @@ class MessagesController < ApplicationController
 
   	def current_product
     	@product = Product.find(params[:product_id])
-  	end	
+  	end	  
 
 end
