@@ -97,6 +97,7 @@ GEM
     tzinfo (0.3.32)
     warden (1.1.1)
       rack (>= 1.0)
+    web-app-theme (0.6.3)
     will_paginate (3.0.3)
 
 PLATFORMS
@@ -114,4 +115,5 @@ DEPENDENCIES
   rack-cache
   rails (= 3.0.11)
   sqlite3
+  web-app-theme (~> 0.6.2)
   will_paginate (>= 3.0.pre)

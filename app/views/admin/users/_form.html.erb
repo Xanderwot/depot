@@ -1,0 +1,6 @@
+<%= semantic_form_for :user, :url => admin_users_path do |f| %>
+	<%= f.input :email, :input_html => { :size => 30 } %>
+	<%= f.input :password, :input_html => { :size => 30 } %>
+	<%= f.input :password_confirmation, :input_html => { :size => 30 } %>
+	<%= f.actions :submit, :cancel %>
+<% end %>	

@@ -25,6 +25,8 @@ gem "nested_form", :git => 'git://github.com/ryanb/nested_form.git', :branch => 
 
 gem 'ancestry'
 
+gem 'web-app-theme', '~> 0.6.2'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

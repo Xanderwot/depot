@@ -38,7 +38,10 @@
 					<%= link_to t('.home'), root_url  %><br />
 					<% if user_signed_in? %>
 						<%= link_to t('.orders'), orders_path %><br />
-					<% end %>	
+					<% end %>
+					<% if can? :manage, :all %>
+						<%= link_to "Admin", admin_users_path %>
+					<% end %>		
 				</div>
 			<div id="main" >
 				<%= yield %>

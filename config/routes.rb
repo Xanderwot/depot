@@ -10,6 +10,9 @@ Depot::Application.routes.draw do
       resources :messages
       get :who_bought, :on => :member
     end
+    namespace :admin do
+      resources :users, :products
+    end
     match "/store" => "store#index"
     root :to => "store#index"
   end  
