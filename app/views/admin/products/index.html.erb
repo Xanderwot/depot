@@ -8,11 +8,28 @@
   <div class="content">          
     <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Products</h2>
     <div class="inner">
+      <%= will_paginate @products %>
       <table class="table">
+        <tr>
+          <%= semantic_form_for @search,  :url => admin_products_path, :html => {:method => :get} do |sf| %>
+          <th>
+            <%= sf.input :title_contains, :label => "Title like" %>
+          </th>
+          <th>
+            <%= sf.input :price_greater_than, :label => "Greater than", :input_html => {:size => 5} %>
+          </th>
+          <th>  
+            <%= sf.input :price_less_than, :label => "Less than", :input_html => {:size => 5} %> 
+          </th>
+          <th>  
+            <%= sf.submit "Search" %>
+          </th>
+        </tr>
+        <% end %>
         <tr>             
           <th class="first">ID</th>
-                    <th> Title </th>
-                    <th> Price </th>
+          <th> <%= sort_link @search, :title %> </th>
+          <th> <%= sort_link @search, :price %> </th>
           <th class="last">&nbsp;</th>
         </tr>
         <% @products.each do |product| -%>
@@ -20,10 +37,10 @@
           <td>
             <%= product.id %>
           </td>
-                    <td>
+          <td>
             <%= link_to product.title, admin_product_path(product) %>
           </td>
-                    <td>
+          <td>
             <%= product.price %>
           </td>
           <td class="last">
@@ -32,7 +49,7 @@
             <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + "" + t("web-app-theme.delete", :default => "Delete"), admin_product_path(product), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
           </td>
         </tr>          
-        <% end -%>
+        <% end %>
       </table>
       <div class="actions-bar wat-cf">
         <div class="actions">

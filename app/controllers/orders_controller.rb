@@ -4,13 +4,9 @@ class OrdersController < ApplicationController
 
   def index
     if can? :manage, :user_id => current_user.id
-      @orders = Order.paginate :page => params[:page], 
-                               :order => 'created_at desc',
-                               :per_page => 15
+      @orders = Order.page params[:page]
     else
-      @orders = current_user.orders.paginate :page => params[:page], 
-                                             :order => 'created_at desc',
-                                             :per_page => 15
+      @orders = current_user.orders.page params[:page]
     end
 
     respond_to do |format|

@@ -4,7 +4,8 @@ class Admin::ProductsController < ApplicationController
 	layout 'admin'
 
 	def index
-		@products = Product.all
+		@search = Product.search(params[:search])
+		@products = @search.paginate(:page => params[:page])
 	end	
 
 	def show

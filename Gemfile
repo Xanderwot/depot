@@ -27,6 +27,10 @@ gem 'ancestry'
 
 gem 'web-app-theme', '~> 0.6.2'
 
+gem 'kaminari'
+
+gem "meta_search"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

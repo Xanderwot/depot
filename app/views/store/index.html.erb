@@ -7,7 +7,7 @@
 </div>
 <% end %>
 <h1><%= t('.title_html') %></h1>
-<p><%= will_paginate @products %></p>
+<p><%= paginate @products, :window => 3 %></p>
 <% @products.each do |product| %>
 	<div class="entry" >
 		<% if product.image_url.nil? %>
