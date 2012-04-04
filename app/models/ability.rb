@@ -13,10 +13,11 @@ class Ability
                 can :read, [ Product, Payment, Message, Image ]
                 can [ :create, :update ], LineItem
                 can :create, Message
-                can :destroy, LineItem, :cart_id => user.cart.id
+                can :destroy, LineItem, :cart_id => user.cart_id
                 can :destroy, Message, :user_id => user.id
                 can :manage, Order, :user_id => user.id
-                can :manage, [ User, Cart ], :id => user.id
+                can :manage, User, :id => user.id
+                can :manage, Cart, :id => user.cart_id    
         end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
