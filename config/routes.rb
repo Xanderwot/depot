@@ -4,14 +4,14 @@ Depot::Application.routes.draw do
 
   scope '(:locale)' do
     resources :orders
+    namespace :admin do
+      resources :users, :products
+    end
     resources :line_items
     resources :carts
     resources :products, :only => [ :index, :show ] do
       resources :messages
       get :who_bought, :on => :member
-    end
-    namespace :admin do
-      resources :users, :products
     end
     match "/store" => "store#index"
     root :to => "store#index"
