@@ -1,7 +1,6 @@
-class Admin::ProductsController < ApplicationController
+class Admin::ProductsController < AdminController
 
 	load_and_authorize_resource
-	layout 'admin'
 
 	def index
 		@search = @products.search(params[:search])
