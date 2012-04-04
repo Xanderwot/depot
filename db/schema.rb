@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(:version => 20120330135831) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "role",                               :default => "user"
     t.integer  "cart_id"
+    t.string   "role",                               :default => "user"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
