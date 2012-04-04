@@ -6,31 +6,33 @@ gem 'rails', '3.0.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
 gem 'jquery-rails'
-
 gem 'devise'
-
 gem 'cancan'
-
 gem 'populator'
-
 gem 'formtastic'
-
 gem 'rack-cache', :require => 'rack/cache'
-
 gem 'dragonfly', '~>0.9.11'
-
 gem "nested_form", :git => 'git://github.com/ryanb/nested_form.git', :branch => 'master'
-
 gem 'ancestry'
-
 gem 'web-app-theme', '~> 0.6.2'
-
 gem 'kaminari'
-
 gem "meta_search"
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'cucumber-rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'email_spec'
+  gem 'timecop'
+  gem 'launchy'
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 

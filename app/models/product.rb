@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
 	has_many :images, :dependent => :destroy
 	has_many :messages, :dependent => :destroy
 
-	accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:name].blank?; a[:image].blank? }
+	accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }
 	before_destroy :ensure_not_referenced_by_any_line_item
 
 	validates :title, :presence => true,

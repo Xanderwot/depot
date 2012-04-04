@@ -6,13 +6,6 @@
 				<td colspan="2" >Total</td>
 				<td class="total_cell" ><%= number_to_currency(cart.total_price) %></td>
 			</tr>
-			<% if !@temp_var %>
-			<tr>
-				<td colspan='2'>
-						<%= button_to t('.checkout'), new_order_path, :class => :empty_button, :method => :get %>
-				</td>
-				<td colspan='2'><%= button_to t('.empty'), cart, :confirm => "Are you shure?", :class => :empty_button, :method => :delete, :remote => true %></td>
-			</tr>
-			<% end %>	
+			<%= show_checkout_button %>	
 	</table>
 <% end %>	

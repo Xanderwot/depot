@@ -6,7 +6,7 @@ Depot::Application.routes.draw do
     resources :orders
     resources :line_items
     resources :carts
-    resources :products do
+    resources :products, :only => [ :index, :show ] do
       resources :messages
       get :who_bought, :on => :member
     end

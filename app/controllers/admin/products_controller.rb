@@ -4,17 +4,9 @@ class Admin::ProductsController < ApplicationController
 	layout 'admin'
 
 	def index
-		@search = Product.search(params[:search])
+		@search = @products.search(params[:search])
 		@products = @search.paginate(:page => params[:page])
-	end	
-
-	def show
-		@product = Product.find(params[:id])
-	end	
-
-	def new
-		@product = Product.new
-	end	
+	end		
 
 	def create
        @product = Product.new(params[:product])
@@ -25,12 +17,7 @@ class Admin::ProductsController < ApplicationController
        end  	 
 	end
 
-	def edit
-		@product = Product.find(params[:id])
-	end
-
 	def update
-		@product = Product.find(params[:id])
        if @product.save
        	 redirect_to admin_products_path
        else
@@ -39,7 +26,6 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def destroy
-    	@product = Product.find(params[:id])
     	@product.destroy
     	redirect_to admin_products_path
 	end	

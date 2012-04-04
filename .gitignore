@@ -3,3 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 public/system/dragonfly/development/**/**/**/*.meta
+test
+*.swp
+.DS_Store

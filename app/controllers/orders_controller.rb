@@ -2,99 +2,55 @@ class OrdersController < ApplicationController
 
   load_and_authorize_resource
 
+  respond_to :js, :html
+
   def index
-    if can? :manage, :user_id => current_user.id
-      @orders = Order.page params[:page]
-    else
-      @orders = current_user.orders.page params[:page]
-    end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @orders }
-    end
+      @orders = @orders.paginate(:page => params[:page])
+  
   end
 
-  # GET /orders/1
-  # GET /orders/1.xml
-  def show
-    @order = Order.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @order }
-    end
-  end
-
-  # GET /orders/new
-  # GET /orders/new.xml
   def new
+
     @cart = current_cart
-    @temp_var = true
+    @hide_checkout_button = true
     if @cart.line_items.empty?
       redirect_to root_url, :notice => "Your cart is empty"
       return
     end
 
-    @order = Order.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @order }
-    end
   end
 
-  # GET /orders/1/edit
-  def edit
-    @order = Order.find(params[:id])
-  end
-
-  # POST /orders
-  # POST /orders.xml
   def create
-    @order = Order.new(params[:order])
+
     @order.add_line_items_from_cart(current_cart)
 
-    respond_to do |format|
       if @order.save
         @order.update_attributes(:user_id => current_user.id, :email => current_user.email)
         current_cart.destroy
-        Notifier.order_received(@order).deliver
-        format.html { redirect_to(root_url, :notice => 'Thank you for your order.') }
-        format.xml  { render :xml => @order, :status => :created, :location => @order }
+        # Notifier.order_received(@order).deliver
+        respond_with(@order, :location => orders_url)
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
+        respond_with(@order, :location => new_order_url)
       end
-    end
   end
 
-  # PUT /orders/1
-  # PUT /orders/1.xml
   def update
-    @order = Order.find(params[:id])
 
-    respond_to do |format|
       if @order.update_attributes(params[:order])
-        format.html { redirect_to(@order, :notice => 'Order was successfully updated.') }
-        format.xml  { head :ok }
-        Notifier.order_shipped(@order).deliver
+        respond_with(@order, :location => orders_url)
+        # Notifier.order_shipped(@order).deliver
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
+        respond_with(@order, :location => order_url)
       end
-    end
+  
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.xml
   def destroy
-    @order = Order.find(params[:id])
+
     @order.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(orders_url) }
-      format.xml  { head :ok }
-    end
+    respond_with(@order, :location => orders_url)
+  
   end
 end

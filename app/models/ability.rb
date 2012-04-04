@@ -7,9 +7,16 @@ class Ability
        user ||= User.new       
         case user.role   
             when "admin"
-                can :manage, :all
+                can :manage, [ Product, Order, User, Payment, Message, LineItem,
+                               Image, Cart ]
             when "user"
+                can :read, [ Product, Payment, Message, Image ]
+                can [ :create, :update ], LineItem
+                can :create, Message
+                can :destroy, LineItem, :cart_id => user.cart.id
+                can :destroy, Message, :user_id => user.id
                 can :manage, Order, :user_id => user.id
+                can :manage, [ User, Cart ], :id => user.id
         end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

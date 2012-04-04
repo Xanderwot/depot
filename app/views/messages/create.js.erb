@@ -1,2 +1,2 @@
 $("#<%= @product.id %>").html("<%= escape_javascript(nested_messages @messages.arrange(:order => :created_at)) %>");
-$("#<%= @product.id %>").append("<%= escape_javascript(render 'form') %>");
+$("#<%= @product.id %>").append("<%= escape_javascript(link_to 'New comment', product_messages_path(@product), :remote => true) %>");

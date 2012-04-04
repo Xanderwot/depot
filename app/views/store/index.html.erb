@@ -19,10 +19,14 @@
 		<%=sanitize product.description %>
 			<div class="price_line" >
 				<span class="price" ><%= number_to_currency(product.price) %></span>
-				<%= button_to t('.add_html'), line_items_path(:product_id => product),
-:remote => true %>
+				<% if user_signed_in? %>
+					<%= button_to t('.add_html'), line_items_path(:product_id => product), :remote => true %>
+				<% end %>	
 			</div>
-			<div class="comments"><%= link_to "Comments(#{product.messages.count})", product_messages_path(product), :remote => true %></div>
+			<% if user_signed_in? %>
+				<div class="comments"><%= link_to "Comments(#{product.messages.count})", product_messages_path(product), :remote => true %>
+				</div>
+			<% end %>	
 			<div id="<%= "#{product.id}" %>"></div>
 	</div>
 <% end %>
