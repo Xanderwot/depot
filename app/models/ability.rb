@@ -18,6 +18,7 @@ class Ability
                 can :manage, Order, :user_id => user.id
                 can :manage, User, :id => user.id
                 can :manage, Cart, :id => user.cart_id    
+                can :assign_role, User
         end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

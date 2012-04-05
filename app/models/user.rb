@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :orders, :dependent => :destroy
   has_many :messages, :dependent => :destroy
 
+  validates :email, :presence => true, :uniqueness => true 
+
   ROLE_TYPES = [ "admin", "user" ]		
   	
   # Include default devise modules. Others available are:
@@ -12,5 +14,5 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
+  attr_accessible :email, :password, :password_confirmation, :remember_me
 end

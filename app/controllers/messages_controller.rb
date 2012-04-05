@@ -1,10 +1,14 @@
 class MessagesController < ApplicationController
+
+
 	before_filter :current_product
   load_and_authorize_resource
   respond_to :js
+
+
   def index
   	@messages = @product.messages.scoped
-    @message = @product.messages.new	
+    @message = @product.messages.new
   end
 
   def new
@@ -12,12 +16,13 @@ class MessagesController < ApplicationController
   end
 
   def create
-    	if @message.save
-    		@message.update_attributes(:user_id => current_user.id, :product_id => @product.id)
-    		@messages = @product.messages.scoped
-    	else
-      		render :new
-    	end	
+    @message.user_id = current_user.id
+    @message.product_id = @product.id
+   	if @message.save
+   		@messages = @product.messages.scoped
+   	else
+   		render :new
+   	end	
   end	
 
   def destroy

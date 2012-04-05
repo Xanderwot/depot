@@ -1,7 +1,4 @@
-<% if notice %>
-	<p id="notice" ><%= notice %></p>
-<% end %>
-<% if @variant %>
+<% if @visits_count %>
 <div class='counter'>
 	<%= pluralize(session[:count], "visit") %> 
 </div>
@@ -10,23 +7,16 @@
 <p><%= paginate @products, :window => 3 %></p>
 <% @products.each do |product| %>
 	<div class="entry" >
-		<% if product.image_url.nil? %>
-			<%= link_to image_tag(product.images.first.image.thumb('50x50').url), product.images.first.image.url, :class => 'list_image' %>
-		<% else %>
-		<%= link_to image_tag(product.image_url), line_items_path(:product_id => product), :method => :post, :remote => true %>
-		<% end %>
+			<%= various_image_links(product) %>
 		<h3><%= product.title %></h3>
 		<%=sanitize product.description %>
 			<div class="price_line" >
 				<span class="price" ><%= number_to_currency(product.price) %></span>
-				<% if user_signed_in? %>
-					<%= button_to t('.add_html'), line_items_path(:product_id => product), :remote => true %>
-				<% end %>	
+					<%= add_to_cart_button(product) %>	
 			</div>
-			<% if user_signed_in? %>
-				<div class="comments"><%= link_to "Comments(#{product.messages.count})", product_messages_path(product), :remote => true %>
-				</div>
-			<% end %>	
+			<div class="comments">
+			<%= comments_link(product) %>
+			</div>	
 			<div id="<%= "#{product.id}" %>"></div>
 	</div>
 <% end %>

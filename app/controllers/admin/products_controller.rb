@@ -10,15 +10,16 @@ class Admin::ProductsController < AdminController
 	def create
        @product = Product.new(params[:product])
        if @product.save
-       	 redirect_to admin_products_path
+       	 redirect_to admin_products_path, :notice => "Product created"
        else
          render :new
        end  	 
 	end
 
 	def update
+    @product.update_attributes(params[:product])
        if @product.save
-       	 redirect_to admin_products_path
+       	 redirect_to admin_products_path, :notice => "Product updated"
        else
          render :edit
        end
@@ -26,6 +27,6 @@ class Admin::ProductsController < AdminController
 
 	def destroy
     	@product.destroy
-    	redirect_to admin_products_path
+    	redirect_to admin_products_path, :notice => "Product destroyed"
 	end	
 end

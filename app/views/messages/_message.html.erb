@@ -6,8 +6,6 @@
   </div>
   <div class="actions">
     <%= link_to "Reply", new_product_message_path(:parent_id => message), :remote => true %>
-    <% if can? :destroy, message %>
-    	<%= link_to "Destroy", product_message_path(:id => message), :method => :delete, :remote => true, :confirm => "Are you shure?" %>
-    <% end %>
+    <%= hide_destroy_link(message) %>
   </div>
 </div>

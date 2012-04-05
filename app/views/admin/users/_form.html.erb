@@ -1,5 +1,5 @@
 <%= semantic_form_for [:admin, @user], :method => :put do |f| %>
-	<%= f.input :email, :input_html => { :size => 30, :disabled => true } %>
+	<%= f.input :email, :input_html => { :size => 30 } %>
 	<%= f.input :password, :input_html => { :size => 30 } %>
 	<%= f.input :password_confirmation, :input_html => { :size => 30 } %>
 	<% if action_name == "edit" %>
@@ -7,4 +7,4 @@
 	<% end %>	
 	<%= f.input :role, :collection => User::ROLE_TYPES %>
 	<%= f.actions :submit, :cancel %>
-<% end %>	
+<% end %>

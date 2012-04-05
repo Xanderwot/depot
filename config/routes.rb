@@ -3,10 +3,11 @@ Depot::Application.routes.draw do
   devise_for :users, :path_names => { :sign_in => "login", :sign_up => "register" }
 
   scope '(:locale)' do
-    resources :orders
+    match "/admin" => "home#index"
     namespace :admin do
       resources :users, :products
     end
+    resources :orders
     resources :line_items
     resources :carts
     resources :products, :only => [ :index, :show ] do

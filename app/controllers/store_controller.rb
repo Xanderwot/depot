@@ -11,7 +11,7 @@ class StoreController < ApplicationController
   	 else
   	    session[:count] += 1
   	 end	
-  	 @variant = session[:count] > 5
+  	 @visits_count = session[:count] > 5
   end
 
 end

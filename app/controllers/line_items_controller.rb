@@ -1,8 +1,8 @@
 class LineItemsController < ApplicationController
 
+  before_filter :authenticate_user!
   load_and_authorize_resource
-
-  respond_to :js, :html
+  respond_to :js, :only => :create
 
   def index
     @line_items = @line_items.paginate(:page => params[:page])
@@ -13,18 +13,9 @@ class LineItemsController < ApplicationController
     @cart = current_cart
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id, product.price)
-
-      if @line_item.save
-        respond_with(@line_item)
-      end
-  end
-
-  def update
-
-      if @line_item.update_attributes(params[:line_item])
-        respond_with(@line_item)
-      end
-
+    if @line_item.save
+      respond_with @line_item
+    end
   end
 
   def destroy

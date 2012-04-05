@@ -9,12 +9,10 @@
     <h2 class="title"> <%= title %></h2>
     <div class="inner">
       
-      <%= semantic_form_for :product, :url => admin_products_path do |f| -%>
+      <%= semantic_form_for [:admin, @product], :method => :put do |f| %>
         <%= render :partial => "form", :locals => {:f => f} %>
       <% end -%>
 
     </div>
   </div>
 </div>
-
-<% content_for :sidebar, render(:partial => 'sidebar') -%>

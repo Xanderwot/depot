@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
+
   before_filter :set_i18n_locale_from_params
   protect_from_forgery
+  respond_to :html, :xml
 
-  @hide_checkout_button = nil
-
-    private
+  private
 
   	def current_cart
       if current_user.cart_id.nil?
@@ -14,12 +14,12 @@ class ApplicationController < ActionController::Base
       else
         current_user.cart
       end 
-
     end 
 
     rescue_from CanCan::AccessDenied do |exception|
       redirect_to root_url, :alert => exception.message
-    end 
+    end
+
    protected
    def set_i18n_locale_from_params
       if params[:locale]
@@ -36,5 +36,4 @@ class ApplicationController < ActionController::Base
     def default_url_options
       { :locale => I18n.locale }
     end
- 
 end

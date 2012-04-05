@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
 	has_many :line_items, :dependent => :destroy
 	belongs_to :user
 	paginates_per 20
+	attr_accessible :name, :address, :pay_type
 
 	PAYMENT_TYPES = Payment.all.map(&:name)
 

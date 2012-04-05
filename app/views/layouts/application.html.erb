@@ -39,11 +39,14 @@
 					<% if user_signed_in? %>
 						<%= link_to t('.orders'), orders_path %><br />
 						<% if current_user.role == "admin" %>
-							<%= link_to "Admin", admin_users_path %>
+							<%= link_to "Admin", admin_path %>
 						<% end %>
 					<% end %>			
 				</div>
 			<div id="main" >
+				<% if notice %>
+    				<p id="notice" ><%= notice %></p>
+  				<% end %>
 				<%= yield %>
 			</div>
 		</div>

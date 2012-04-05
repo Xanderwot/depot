@@ -15,10 +15,6 @@ class Product < ActiveRecord::Base
 
 	validates :description, :presence => true
 
-	#validates :image_url, :presence => true,
-	# 					  :format => { :with => (%r{\.(gif|jpg|png)$}i),
-	#								   :message => 'must be a .gif, .jpg or .png image'}	
-
 	validates :price, :numericality => {:greater_than_or_equal_to => 0.01}
 
 
