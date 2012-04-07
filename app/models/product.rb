@@ -11,13 +11,11 @@ class Product < ActiveRecord::Base
 	validates :title, :presence => true,
 	                  :uniqueness => true,
 	                  :length => { :within => (4..50),
-	                  			   :message => 'must be betwin 4 and 50 characters' }             
+							           			   :message => 'must be betwin 4 and 50 characters' }             
 
 	validates :description, :presence => true
 
 	validates :price, :numericality => {:greater_than_or_equal_to => 0.01}
-
-
 
 	private
 	
@@ -29,6 +27,5 @@ class Product < ActiveRecord::Base
 				return false
 			end
 		end
-
-
+		
 end

@@ -2,11 +2,13 @@ FactoryGirl.define do
 	factory :product do |f|
 		f.title "title product"
 		f.description "desc"
-		f.price 10
-		f.image_url "rred.jpg"
+		f.image_url "img.jpg"
+		f.price 12
 	end	
 	factory :line_item do |f|
-		f.product_id 1
-		f.quantity 23
-	end		
+		f.after_build do |d|
+			d.product = Product.first||Factory(:product)
+			d.cart = Cart.create
+		end	
+	end					
 end

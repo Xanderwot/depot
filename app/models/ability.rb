@@ -4,22 +4,22 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
-       user ||= User.new       
-        case user.role   
-            when "admin"
-                can :manage, [ Product, Order, User, Payment, Message, LineItem,
-                               Image, Cart ]
-                can :assign_role, User               
-            when "user"
-                can :read, [ Product, Payment, Message, Image ]
-                can [ :create, :update ], LineItem
-                can :create, Message
-                can :destroy, LineItem, :cart_id => user.cart_id
-                can :destroy, Message, :user_id => user.id
-                can :manage, Order, :user_id => user.id
-                can :manage, User, :id => user.id
-                can :manage, Cart, :id => user.cart_id    
-        end
+    user ||= User.new       
+    case user.role   
+      when "admin"
+        can :manage, [ Product, Order, User, Payment, Message, LineItem,
+                       Image, Cart ]
+        can :assign_role, User               
+      when "user"
+        can :read, [ Product, Payment, Message, Image ]
+        can [ :create, :update ], LineItem
+        can :create, Message
+        can :destroy, LineItem, :cart_id => user.cart_id
+        can :destroy, Message, :user_id => user.id
+        can :manage, Order, :user_id => user.id
+        can :manage, User, :id => user.id
+        can :manage, Cart, :id => user.cart_id    
+    end
     #
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are

@@ -8,25 +8,17 @@ class Admin::ProductsController < AdminController
 	end		
 
 	def create
-       @product = Product.new(params[:product])
-       if @product.save
-       	 redirect_to admin_products_path, :notice => "Product created"
-       else
-         render :new
-       end  	 
+    @product = Product.new(params[:product])
+    respond_with [:admin, @product], :notice => "Product created"  	 
 	end
 
 	def update
     @product.update_attributes(params[:product])
-       if @product.save
-       	 redirect_to admin_products_path, :notice => "Product updated"
-       else
-         render :edit
-       end
+    respond_with [:admin, @product], :notice => "Product updated"
 	end
 
 	def destroy
-    	@product.destroy
-    	redirect_to admin_products_path, :notice => "Product destroyed"
+    @product.destroy
+    redirect_to admin_products_path, :notice => "Product destroyed"
 	end	
 end

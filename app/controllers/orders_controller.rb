@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
   def index
-      @orders = @orders.paginate(:page => params[:page])
+    @orders = @orders.paginate(:page => params[:page])
   end
 
   def new
@@ -21,22 +21,17 @@ class OrdersController < ApplicationController
     @order.email = current_user.email
     if @order.save
       current_cart.destroy
-      respond_with(@order, :location => orders_url, :notice => "Order created")
-    else
-      respond_with(@order, :location => new_order_url, :notice => "Error of creating")
     end
+    respond_with @order
   end
 
   def update
-    if @order.update_attributes(params[:order])
-      respond_with(@order, :location => orders_url, :notice => "Order updated")
-    else
-      respond_with(@order, :location => order_url, :notice => "Error of updating")
-    end  
+    @order.update_attributes(params[:order])
+    respond_with @order  
   end
 
   def destroy
     @order.destroy
-    respond_with(@order, :location => orders_url, :notice => "Order destroyed")  
+    respond_with @order, :location => orders_url  
   end
 end

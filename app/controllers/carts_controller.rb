@@ -1,7 +1,6 @@
 class CartsController < ApplicationController
 
   load_and_authorize_resource
-
   respond_to :js, :only => :destroy 
 
   def show
@@ -29,5 +28,5 @@ class CartsController < ApplicationController
     @cart.destroy
     respond_with @cart, :location => root_url
   end
-     
+       
 end

@@ -1,0 +1,19 @@
+Feature: Create product
+
+  In order to show product creation
+  A admin
+  Should create a product
+  
+    Scenario: Create and submit product
+
+      Given the following users exist:
+        |email|password|password_confirmation|role|
+        |admin@host.com|qwer|qwer|admin|
+        |user@host.com|qwer|qwer|user|
+      When I signin as admin
+      When I go to the admin/products/new/ page
+      And enter product title as "title"
+      And description as "description"
+      And price as "32.44"
+      And submit the form
+      Then I should see created product  

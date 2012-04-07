@@ -13,9 +13,7 @@ class LineItemsController < ApplicationController
     @cart = current_cart
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id, product.price)
-    if @line_item.save
-      respond_with @line_item
-    end
+    @line_item.save
   end
 
   def destroy

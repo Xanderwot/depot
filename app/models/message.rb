@@ -3,5 +3,6 @@ class Message < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :product
 	attr_accessible :parent_id, :content
+  
 	validates :content, :presence => true
 end

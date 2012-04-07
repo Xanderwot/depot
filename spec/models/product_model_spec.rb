@@ -2,14 +2,13 @@ require 'spec_helper'
 
 describe Product do
 	
-	it "Product can't destroy if have line_items" do
-		product = FactoryGirl.create(:product)
-    	line_item = FactoryGirl.create(:line_item, :product_id => product.id, :price => product.price)
-		product.destroy.should be_false
+	it "can't destroy if have line_items" do
+    	line_item = Factory(:line_item)
+		line_item.product.destroy.should be_false
 	end	
 
-	it "Product destroyed without line_items" do
-		product = FactoryGirl.create(:product)
+	it "destroyed without line_items" do
+		product = Factory(:product)
 		product.destroy.should be_true
 	end	
 

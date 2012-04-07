@@ -21,18 +21,19 @@ gem "meta_search"
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'cucumber-rails'
 end
 
 group :test do
+  gem 'cucumber-rails'
+  gem 'shoulda-matchers'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
   gem 'email_spec'
   gem 'timecop'
   gem 'launchy'
-end
+  gem 'factory_girl_rails'
+end  
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
