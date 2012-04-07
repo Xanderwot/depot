@@ -3,11 +3,11 @@ module StoreHelper
 		if current_user.nil?
 			link_to image_tag(product.image_url), 
 			line_items_path(:product_id => product), 
-			:method => :post
+			:method => :post, :id => "image_url"
 		else
 			link_to image_tag(product.image_url), 
 			line_items_path(:product_id => product), 
-			:method => :post, :remote => true
+			:method => :post, :remote => true, :id => "image_url"
 		end		
 	end	
 

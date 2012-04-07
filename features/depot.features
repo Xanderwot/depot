@@ -1,19 +1,69 @@
 Feature: Create product
 
-  In order to show product creation
-  A admin
-  Should create a product
-  
-    Scenario: Create and submit product
+  In order to show some functions of application
+  As a admin and user
+  Should create a product, buy some staff and change user role
 
+    Background:
       Given the following users exist:
-        |email|password|password_confirmation|role|
-        |admin@host.com|qwer|qwer|admin|
-        |user@host.com|qwer|qwer|user|
-      When I signin as admin
-      When I go to the admin/products/new/ page
-      And enter product title as "title"
-      And description as "description"
-      And price as "32.44"
-      And submit the form
-      Then I should see created product  
+        |email         |password|password_confirmation|
+        |admin@host.com|qwer    |qwer                 |
+        |user@host.com |qwer    |qwer                 |
+      And the following payments exist:
+        |name |
+        |Type1|
+        |Type2|
+        |Type3|  
+          
+    Scenario: Create and submit product as admin
+
+      When I go to the signin page
+      And I must be admin
+      And I fill in "Email*" with "admin@host.com"
+      And I fill in "Password*" with "qwer"
+      And I press "user_submit"
+      When I follow "Admin"
+      When I follow "Products"
+      When I follow "New"
+      When I fill in "Title*" with "Title"
+      And I fill in "Description*" with "description"
+      And I fill in "Image url" with "image.jpg"
+      And I fill in "Price" with number "32.44"
+      And I press "product_submit"
+      Then I should have 2 products created  
+
+    Scenario: Checkout order as user
+
+      Given the following products exist:
+        |title  |description|image_url|price|
+        |Product|Description|ruby.jpg|32.55|
+
+      When I go to signin page
+      And I fill in "Email*" with "user@host.com"
+      And I fill in "Password*" with "qwer"
+      And I press "user_submit"
+      When I press "Add to Cart"
+      And I follow "image_url"
+      When I press "Checkout"
+      And I fill in "Name*" with "My name"
+      And I fill in "Address" with "Nothing city"
+      And I select "Type2" from "Payment*"
+      And I press "order_submit"
+      Then I should have 1 order created 
+
+    Scenario: Change user role as admin
+
+      When I go to the signin page
+      And I must be admin
+      And I fill in "Email*" with "admin@host.com"
+      And I fill in "Password*" with "qwer"
+      And I press "user_submit"
+      When I follow "Admin"
+      When I follow "Users"
+      And I follow "user@host.com"
+      When I follow "Edit"
+      When I fill in "Password" with "qwer"
+      And I fill in "Confirm password" with "qwer"
+      And I select "admin" from "Role"
+      And I press "user_submit"
+      Then "user@host.com" role should be "admin"

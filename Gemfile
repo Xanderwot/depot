@@ -29,9 +29,11 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'email_spec'
+  gem 'webrat'
   gem 'timecop'
   gem 'launchy'
   gem 'factory_girl_rails'
+  gem 'pickle'
 end  
 
 # Use unicorn as the web server
