@@ -1,6 +1,6 @@
 <%= semantic_form_for @order do |f| %>
     <%= f.input :name, :input_html => { :size => 40 } %>
     <%= f.input :address, :input_html => { :cols => 40, :rows => 4 } %>
-    <%= f.input :pay_type, :collection => Payment.all.map(&:name) %>
+    <%= f.input :pay_type, :collection => Order::PAYMENT_TYPES %>
     <%= f.actions :submit, :cancel %>
   <% end %>

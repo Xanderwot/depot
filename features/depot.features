@@ -9,12 +9,10 @@ Feature: Create product
         |email         |password|password_confirmation|
         |admin@host.com|qwer    |qwer                 |
         |user@host.com |qwer    |qwer                 |
-      And the following payments exist:
-        |name |
-        |Type1|
-        |Type2|
-        |Type3|  
-          
+      And the following products exist:
+        |title|description|image_url|price|
+        |name |description|ruby.jpg |44.23|  
+         
     Scenario: Create and submit product as admin
 
       When I go to the signin page
@@ -30,13 +28,27 @@ Feature: Create product
       And I fill in "Image url" with "image.jpg"
       And I fill in "Price" with number "32.44"
       And I press "product_submit"
-      Then I should have 2 products created  
+      Then I should have 2 products created
+      And "Title" price must be "32.44"  
+
+    Scenario: Create a new user as admin
+
+      When I go to the signin page
+      And I must be admin
+      And I fill in "Email*" with "admin@host.com"
+      And I fill in "Password*" with "qwer"
+      And I press "user_submit"
+      When I follow "Admin"
+      When I follow "Users"
+      When I follow "New"
+      When I fill in "Email*" with "user2@host.com"
+      And I fill in "Password*" with "qwer"
+      And I fill in "Confirm password" with "qwer"
+      And I press "user_submit"
+      Then I should see 3 created users
+      And "user2@host.com" role should be "user" 
 
     Scenario: Checkout order as user
-
-      Given the following products exist:
-        |title  |description|image_url|price|
-        |Product|Description|ruby.jpg|32.55|
 
       When I go to signin page
       And I fill in "Email*" with "user@host.com"
@@ -46,8 +58,8 @@ Feature: Create product
       And I follow "image_url"
       When I press "Checkout"
       And I fill in "Name*" with "My name"
-      And I fill in "Address" with "Nothing city"
-      And I select "Type2" from "Payment*"
+      And I fill in "Address*" with "Nothing city"
+      And I select "Check" from "Payment*"
       And I press "order_submit"
       Then I should have 1 order created 
 

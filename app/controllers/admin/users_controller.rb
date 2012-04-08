@@ -3,6 +3,7 @@ class Admin::UsersController < AdminController
   load_and_authorize_resource
 
 	def create
+    @user.save
     respond_with [:admin, @user], :notice => "User created" 
 	end
 

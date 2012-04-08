@@ -1,10 +1,11 @@
 class Order < ActiveRecord::Base
 	has_many :line_items, :dependent => :destroy
+	has_many :payments
 	belongs_to :user
 	paginates_per 20
 	attr_accessible :name, :address, :pay_type
 
-	PAYMENT_TYPES = Payment.all.map(&:name)
+	PAYMENT_TYPES = ["Check", "Credit Card"]
 
 	validates :name, :address, :pay_type, :presence => true
 	

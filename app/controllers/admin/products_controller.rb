@@ -8,7 +8,7 @@ class Admin::ProductsController < AdminController
 	end		
 
 	def create
-    @product = Product.new(params[:product])
+    @product.save
     respond_with [:admin, @product], :notice => "Product created"  	 
 	end
 
