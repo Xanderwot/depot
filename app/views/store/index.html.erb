@@ -4,10 +4,16 @@
 </div>
 <% end %>
 <h1><%= t('.title_html') %></h1>
+<div id="compare">
+	<%= show_compare_text %>
+</div>
 <p><%= paginate @products, :window => 3 %></p>
 <% @products.each do |product| %>
 	<div class="entry" >
-			<%= various_image_links(product) %>
+		<div class="<%= product.id %>">
+			<%= add_compare_link(product) %>
+		</div>
+		<%= various_image_links(product) %>
 		<h3><%= product.title %></h3>
 		<%=sanitize product.description %>
 			<div class="price_line" >

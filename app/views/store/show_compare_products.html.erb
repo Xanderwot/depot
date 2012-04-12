@@ -1,0 +1,13 @@
+<h1>Compare products</h1>
+<table>
+<tt>
+  <th>Title</th>
+  <th>Price</th>
+</tt>  
+<% @products.each do |product| %>
+<tr>
+  <td><%= product.title %></td>
+  <td><%= product.price %></td>
+</tr>
+<% end %>
+</table>
