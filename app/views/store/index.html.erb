@@ -5,24 +5,9 @@
 <% end %>
 <h1><%= t('.title_html') %></h1>
 <div id="compare">
-	<%= show_compare_text %>
+	<%= render "compare" %>
 </div>
-<p><%= paginate @products, :window => 3 %></p>
-<% @products.each do |product| %>
-	<div class="entry" >
-		<div class="<%= product.id %>">
-			<%= add_compare_link(product) %>
-		</div>
-		<%= various_image_links(product) %>
-		<h3><%= product.title %></h3>
-		<%=sanitize product.description %>
-			<div class="price_line" >
-				<span class="price" ><%= number_to_currency(product.price) %></span>
-					<%= add_to_cart_button(product) %>	
-			</div>
-			<div class="comments">
-			<%= comments_link(product) %>
-			</div>	
-			<div id="<%= "#{product.id}" %>"></div>
-	</div>
-<% end %>
+<p><%= paginate @products, :window => 3 %></p>	
+<div id="products_render">
+	<%= render "products" %>
+</div>

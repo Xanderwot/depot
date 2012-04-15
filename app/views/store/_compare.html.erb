@@ -1,0 +1,4 @@
+<% unless session[:compare].nil? || session[:compare].count < 0 %>
+	<%= show_compare_text %></br>
+	<%= delete_compare_session_link %>
+<% end %>	

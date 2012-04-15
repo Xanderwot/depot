@@ -44,12 +44,16 @@ module StoreHelper
 		end		
 	end	
 
+	def delete_compare_session_link
+			link_to "delete products", del_compare_session_path, :remote => true if session[:compare].count > 0
+	end	
+
 	def show_compare_text
 		unless session[:compare].nil? || session[:compare].empty?
 			if session[:compare].count == 1
 				pluralize(session[:compare].count, "product") + " selected"
 			else	
-				link_to "Compare " + pluralize(session[:compare].count, "product"), show_compare_path  
+				link_to "Compare " + pluralize(session[:compare].count, "product"), show_compare_path 
 			end	
 		end		
 	end	

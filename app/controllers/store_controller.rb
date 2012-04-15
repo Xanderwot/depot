@@ -1,6 +1,6 @@
 class StoreController < ApplicationController
  
-  respond_to :js, :only => [ :add_compare_product, :del_compare_prosucts ]
+  respond_to :js, :only => [ :add_compare_product, :del_compare_prosucts, :del_compare_session ]
 
   def index
   	@products = Product.page params[:page]
@@ -16,12 +16,14 @@ class StoreController < ApplicationController
   end
 
   def add_compare_product
+    @products = Product.page params[:page]
     @product = Product.find(params[:id])
     session[:compare] = [] if session[:compare].nil?
     session[:compare] << @product.id
   end 
 
   def del_compare_product
+    @products = Product.page params[:page]
     @product = Product.find(params[:id])
     del_art = [] << @product.id
     session[:compare] -= del_art
@@ -32,7 +34,11 @@ class StoreController < ApplicationController
       redirect_to root_path
     end  
     @products = Product.where(:id => session[:compare])
-    session[:compare] = nil
   end 
+
+  def del_compare_session
+    @products = Product.page params[:page]
+    session[:compare] = nil
+  end  
 
 end

@@ -18,6 +18,7 @@ Depot::Application.routes.draw do
     match "/add_compare" => "store#add_compare_product"
     match "/del_compare" => "store#del_compare_product"
     match "/show_compare" => "store#show_compare_products"
+    match "/del_compare_session" => "store#del_compare_session"
     root :to => "store#index"
   end  
 
